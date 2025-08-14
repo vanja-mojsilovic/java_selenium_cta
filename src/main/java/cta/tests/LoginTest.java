@@ -33,6 +33,8 @@ public class LoginTest {
         sleep(3000);
 
         driver.quit();
+        System.exit(0);
+
     }
 
     private static void sleep(int millis) {

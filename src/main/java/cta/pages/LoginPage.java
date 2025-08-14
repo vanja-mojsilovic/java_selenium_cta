@@ -15,7 +15,7 @@ public class LoginPage {
 
     // Locators
     @FindBy(xpath = "//input[@id='identifierId']")
-    private WebElement usernameField;
+    public WebElement usernameField;
 
 
     // Methods
@@ -30,13 +30,13 @@ public class LoginPage {
     }
 
     public void enterUsername(String username) {
-        WebElement usernameField = driver.findElement(By.id("username")); // adjust locator as needed
-        usernameField.clear();
-        usernameField.sendKeys(username);
+        WebElement element = usernameField;
+        element.clear();
+        element.sendKeys(username);
         System.out.println("Entered username: " + username);
 
         // Optional: verify input
-        String enteredValue = usernameField.getAttribute("value");
+        String enteredValue = element.getAttribute("value");
         if (enteredValue.equals(username)) {
             System.out.println("Username entered successfully.");
         } else {
