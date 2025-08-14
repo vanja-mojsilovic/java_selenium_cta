@@ -3,26 +3,37 @@ package cta.tests;
 import cta.pages.LoginPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class LoginTest {
-  public static void main(String[] args) {
-    WebDriverManager.chromedriver().setup();
-    WebDriver driver = new ChromeDriver();
+    public static void main(String[] args) {
+        WebDriverManager.chromedriver().setup();
 
-    LoginPage login = new LoginPage(driver);
-    login.navigate();
+        ChromeOptions options = new ChromeOptions();
 
-    System.out.println("Sleep 3 seconds!");
-    sleep(3000);
+        // Enable headless mode only in CI environments
+        if (System.getenv("CI") != null) {
+            options.addArguments("--headless");
+            options.addArguments("--no-sandbox");
+            options.addArguments("--disable-dev-shm-usage");
+        }
 
-    login.enterUsername("vanja.mojsilovic@spothopperapp.com");
+        WebDriver driver = new ChromeDriver(options);
 
-    System.out.println("Sleep another 3 seconds!");
-    sleep(3000);
+        LoginPage login = new LoginPage(driver);
+        login.navigate();
 
-    driver.quit();
-  }
+        System.out.println("Sleep 3 seconds!");
+        sleep(3000);
+
+        login.enterUsername("vanja.mojsilovic@spothopperapp.com");
+
+        System.out.println("Sleep another 3 seconds!");
+        sleep(3000);
+
+        driver.quit();
+    }
 
     private static void sleep(int millis) {
         try {

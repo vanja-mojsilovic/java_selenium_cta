@@ -30,9 +30,20 @@ public class LoginPage {
     }
 
     public void enterUsername(String username) {
-        WebElement element = usernameField;
-        element.sendKeys(username);
+        WebElement usernameField = driver.findElement(By.id("username")); // adjust locator as needed
+        usernameField.clear();
+        usernameField.sendKeys(username);
+        System.out.println("Entered username: " + username);
+
+        // Optional: verify input
+        String enteredValue = usernameField.getAttribute("value");
+        if (enteredValue.equals(username)) {
+            System.out.println("Username entered successfully.");
+        } else {
+            System.out.println("Username entry failed. Field contains: " + enteredValue);
+        }
     }
+
 
     public void enterPassword(String password) {
     driver.findElement(By.id("password")).sendKeys(password);
