@@ -38,6 +38,7 @@ public class LoginPage {
     public void clickNextPasswordGoogle(WebDriver driver){
         WebElement element = nextPasswordGoogleButtonLocator;
         element.click();
+        System.out.println("Next password clicked!");
     }
 
     public void enterPasswordGoogle(WebDriver driver,String password) {
@@ -55,6 +56,7 @@ public class LoginPage {
     public void clickNextEmailGoogle(WebDriver driver){
         WebElement element = nextEmailGoogleButtonLocator;
         element.click();
+        System.out.println("Next Email clicked!");
     }
 
     public void enterEmailGoogle(WebDriver driver,String username) {
@@ -63,9 +65,9 @@ public class LoginPage {
         element.sendKeys(username);
         String enteredValue = element.getAttribute("value");
         if (enteredValue.equals(username)) {
-            System.out.println("Username entered successfully.");
+            System.out.println("Email entered successfully.");
         } else {
-            System.out.println("Username entry failed. ");
+            System.out.println("Email entry failed. ");
         }
     }
 
