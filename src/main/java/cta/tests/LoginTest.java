@@ -26,11 +26,11 @@ public class LoginTest {
         loginPage.navigate();
         sleep(1000);
         loginPage.enterEmailGoogle(driver,variablesPage.emailGoogle);
-        sleep(1000);
+        sleep(3000);
         loginPage.clickNextEmailGoogle(driver);
         sleep(3000);
         loginPage.enterPasswordGoogle(driver,variablesPage.passwordGoogle);
-        sleep(1000);
+        sleep(3000);
         loginPage.clickNextPasswordGoogle(driver);
         sleep(3000);
         driver.quit();
