@@ -1,6 +1,7 @@
 package cta.tests;
 
 import cta.pages.LoginPage;
+import cta.pages.VariablesPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -12,7 +13,6 @@ public class LoginTest {
 
         ChromeOptions options = new ChromeOptions();
 
-        // Enable headless mode only in CI environments
         if (System.getenv("CI") != null) {
             options.addArguments("--headless");
             options.addArguments("--no-sandbox");
@@ -21,17 +21,18 @@ public class LoginTest {
 
         WebDriver driver = new ChromeDriver(options);
 
-        LoginPage login = new LoginPage(driver);
-        login.navigate();
-
-        System.out.println("Sleep 3 seconds!");
+        LoginPage loginPage = new LoginPage(driver);
+        VariablesPage variablesPage = new VariablesPage(driver);
+        loginPage.navigate();
+        sleep(1000);
+        loginPage.enterEmailGoogle(driver,variablesPage.emailGoogle);
+        sleep(1000);
+        loginPage.clickNextEmailGoogle(driver);
         sleep(3000);
-
-        login.enterUsername("vanja.mojsilovic@spothopperapp.com");
-
-        System.out.println("Sleep another 3 seconds!");
+        loginPage.enterPasswordGoogle(driver,variablesPage.passwordGoogle);
+        sleep(1000);
+        loginPage.clickNextPasswordGoogle(driver);
         sleep(3000);
-
         driver.quit();
         System.exit(0);
 

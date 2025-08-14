@@ -1,6 +1,6 @@
 package cta.pages;
 
-import org.openqa.selenium.By;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -15,41 +15,63 @@ public class LoginPage {
 
     // Locators
     @FindBy(xpath = "//input[@id='identifierId']")
-    public WebElement usernameField;
+    public WebElement emailGoogleLocator;
 
+    @FindBy(xpath = "//div[@id='identifierNext']//button")
+    public WebElement nextEmailGoogleButtonLocator;
 
-    // Methods
+    @FindBy(xpath = "//input[@name='Passwd']")
+    public WebElement passwordGoogleLocator;
+
+    @FindBy(xpath = "//div[@id='passwordNext']//button")
+    public WebElement nextPasswordGoogleButtonLocator;
+
+    // Constructor
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
-    public void navigate() {
-    driver.get("https://accounts.google.com/");
+    // Methods
+
+    public void clickNextPasswordGoogle(WebDriver driver){
+        WebElement element = nextPasswordGoogleButtonLocator;
+        element.click();
     }
 
-    public void enterUsername(String username) {
-        WebElement element = usernameField;
+    public void enterPasswordGoogle(WebDriver driver,String password) {
+        WebElement element = passwordGoogleLocator;
+        element.clear();
+        element.sendKeys(password);
+        String enteredValue = element.getAttribute("value");
+        if (enteredValue.equals(password)) {
+            System.out.println("Password entered successfully.");
+        } else {
+            System.out.println("Password entry failed. ");
+        }
+    }
+
+    public void clickNextEmailGoogle(WebDriver driver){
+        WebElement element = nextEmailGoogleButtonLocator;
+        element.click();
+    }
+
+    public void enterEmailGoogle(WebDriver driver,String username) {
+        WebElement element = emailGoogleLocator;
         element.clear();
         element.sendKeys(username);
-        System.out.println("Entered username: " + username);
-
-        // Optional: verify input
         String enteredValue = element.getAttribute("value");
         if (enteredValue.equals(username)) {
             System.out.println("Username entered successfully.");
         } else {
-            System.out.println("Username entry failed. Field contains: " + enteredValue);
+            System.out.println("Username entry failed. ");
         }
     }
 
-
-    public void enterPassword(String password) {
-    driver.findElement(By.id("password")).sendKeys(password);
+    public void navigate() {
+    driver.get("https://accounts.google.com/");
     }
 
-    public void submit() {
-    driver.findElement(By.cssSelector("button[type='submit']")).click();
-    }
+    
 }
