@@ -9,7 +9,7 @@ jobs:
 
     env:
       VANJA_GOOGLE_PASSWORD: ${{ secrets.VANJA_GOOGLE_PASSWORD }}
-      DISPLAY: :99  
+      DISPLAY: :99  # Required for Xvfb
 
     steps:
     - name: Checkout code
@@ -24,7 +24,7 @@ jobs:
     - name: Install Chrome and Xvfb
       run: |
         sudo apt-get update
-        sudo apt-get install -y wget unzip xvfb libxi6 libgconf-2-4
+        sudo apt-get install -y wget unzip xvfb libxi6
         wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
         sudo dpkg -i google-chrome-stable_current_amd64.deb || sudo apt-get -f install -y
 
