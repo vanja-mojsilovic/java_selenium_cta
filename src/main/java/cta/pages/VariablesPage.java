@@ -18,7 +18,7 @@ public class VariablesPage {
                                                 .load();
     public String emailGoogle = get("VANJA_EMAIL");
     public String passwordGoogle = get("VANJA_GOOGLE_PASSWORD");
-    public String googleSecretKey = get("VANJA_GOOGLE_SECRTE_KEY");
+    public String googleSecretKey = get("VANJA_GOOGLE_SECRET_KEY");
 
     // Constructor
     public VariablesPage(WebDriver driver) {

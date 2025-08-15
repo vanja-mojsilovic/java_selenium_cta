@@ -37,7 +37,7 @@ public class LoginTest {
         loginPage.enterGoogleAuthenticatiorCode(driver,variablesPage.googleSecretKey);
         sleep(3000);
         loginPage.clickGoogleAuthenticatorCodeNextButton(driver);
-        sleep(3000);
+        sleep(10000);
 
         driver.quit();
         System.exit(0);
