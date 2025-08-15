@@ -8,7 +8,9 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
+      VANJA_EMAIL: ${{ secrets.VANJA_EMAIL }}
       VANJA_GOOGLE_PASSWORD: ${{ secrets.VANJA_GOOGLE_PASSWORD }}
+      VANJA_GOOGLE_SECRET_KEY: ${{ secrets.VANJA_GOOGLE_SECRET_KEY }}
       DISPLAY: :99  # Required for Xvfb
 
     steps:
