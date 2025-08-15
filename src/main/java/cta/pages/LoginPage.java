@@ -6,6 +6,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import javax.swing.JPasswordField;
+
+import org.jboss.aerogear.security.otp.Totp;
+
 
 public class LoginPage {
     // Variables
@@ -26,6 +30,12 @@ public class LoginPage {
     @FindBy(xpath = "//div[@id='passwordNext']//button")
     public WebElement nextPasswordGoogleButtonLocator;
 
+    @FindBy(xpath = "//input[@name='totpPin']")
+    public WebElement enterCodeFieldLocator;
+
+    @FindBy(xpath = "//div[@id='totpNext']//button")
+    public WebElement nextAuthCodeGoogleButtonLocator;
+
     // Constructor
 
     public LoginPage(WebDriver driver) {
@@ -34,6 +44,24 @@ public class LoginPage {
     }
 
     // Methods
+    
+   
+
+    public void enterGoogleAuthenticatiorCode(WebDriver driver,String googleSecretKey){
+        WebElement element = enterCodeFieldLocator;
+		Totp totp = new Totp(googleSecretKey);
+		String verificationCode = totp.now();
+        element.clear();
+        element.sendKeys(verificationCode);
+        System.out.println("Authentication Code is entered!");
+    }
+
+    public void clickGoogleAuthenticatorCodeNextButton(WebDriver driver){
+        WebElement element = nextAuthCodeGoogleButtonLocator;
+        element.click();
+        System.out.println("Next Auth Code clicked!");
+    }
+
 
     public void clickNextPasswordGoogle(WebDriver driver){
         WebElement element = nextPasswordGoogleButtonLocator;

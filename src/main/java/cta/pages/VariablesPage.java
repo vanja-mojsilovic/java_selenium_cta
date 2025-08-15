@@ -9,21 +9,24 @@ import io.github.cdimascio.dotenv.Dotenv;
 
 
 public class VariablesPage {
+    
+    
+    // Variables
     private WebDriver driver;
-
     private static final Dotenv dotenv = Dotenv.configure()
                                                 .ignoreIfMissing()
                                                 .load();
-
-
-    public String emailGoogle = "vanja.mojsilovic@spothopperapp.com";
+    public String emailGoogle = get("VANJA_EMAIL");
     public String passwordGoogle = get("VANJA_GOOGLE_PASSWORD");
+    public String googleSecretKey = get("VANJA_GOOGLE_SECRTE_KEY");
+
+    // Constructor
     public VariablesPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
-
+    // Methods
     public static String get(String key) {
         String value = System.getenv(key); // GitHub Actions or OS-level
         if (value == null || value.isEmpty()) {
