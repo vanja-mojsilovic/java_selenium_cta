@@ -1,54 +1,42 @@
 package cta.tests;
 
-import cta.pages.LoginPage;
-import cta.pages.VariablesPage;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import io.github.bonigarcia.wdm.WebDriverManager;
+import cta.pages.*;
+import cta.tests.*;
 
-public class LoginTest {
+public class LoginTest extends BaseTest {
     public static void main(String[] args) {
-        WebDriverManager.chromedriver().setup();
+        LoginTest test = new LoginTest();
+        test.runTest();
+    }
 
-        ChromeOptions options = new ChromeOptions();
-
-        if (System.getenv("CI") != null) {
-            options.addArguments("--no-sandbox");
-            options.addArguments("--disable-dev-shm-usage");
-            options.addArguments("--window-size=1920,1080");
-            options.addArguments("--disable-gpu");
-        }
-
-        WebDriver driver = new ChromeDriver(options);
+    public void runTest() {
+        setUp();
 
         LoginPage loginPage = new LoginPage(driver);
         VariablesPage variablesPage = new VariablesPage(driver);
-        loginPage.navigate();
+
+        navigate(variablesPage.googleLoginPage);
         sleep(1000);
-        loginPage.enterEmailGoogle(driver,variablesPage.emailGoogle);
+
+        loginPage.enterEmailGoogle(variablesPage.emailGoogle);
         sleep(3000);
-        loginPage.clickNextEmailGoogle(driver);
+
+        loginPage.clickNextEmailGoogle();
         sleep(3000);
-        loginPage.enterPasswordGoogle(driver,variablesPage.passwordGoogle);
+
+        loginPage.enterPasswordGoogle(variablesPage.passwordGoogle);
         sleep(3000);
-        loginPage.clickNextPasswordGoogle(driver);
+
+        loginPage.clickNextPasswordGoogle();
         sleep(3000);
-        loginPage.enterGoogleAuthenticatiorCode(driver,variablesPage.googleSecretKey);
+
+        loginPage.enterGoogleAuthenticatorCode(variablesPage.googleSecretKey);
         sleep(3000);
-        loginPage.clickGoogleAuthenticatorCodeNextButton(driver);
+
+        loginPage.clickGoogleAuthenticatorCodeNextButton();
         sleep(10000);
 
-        driver.quit();
+        tearDown();
         System.exit(0);
-
-    }
-
-    private static void sleep(int millis) {
-        try {
-            Thread.sleep(millis);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 }

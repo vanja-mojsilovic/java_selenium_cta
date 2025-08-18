@@ -6,12 +6,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import javax.swing.JPasswordField;
+//import javax.swing.JPasswordField;
 
 import org.jboss.aerogear.security.otp.Totp;
 
 
-public class LoginPage {
+public class LoginPage extends BasePage {
     // Variables
     private WebDriver driver;
 
@@ -39,6 +39,7 @@ public class LoginPage {
     // Constructor
 
     public LoginPage(WebDriver driver) {
+        super(driver);
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
@@ -47,7 +48,7 @@ public class LoginPage {
     
    
 
-    public void enterGoogleAuthenticatiorCode(WebDriver driver,String googleSecretKey){
+    public void enterGoogleAuthenticatorCode(String googleSecretKey){
         WebElement element = enterCodeFieldLocator;
 		Totp totp = new Totp(googleSecretKey);
 		String verificationCode = totp.now();
@@ -56,20 +57,20 @@ public class LoginPage {
         System.out.println("Authentication Code is entered!");
     }
 
-    public void clickGoogleAuthenticatorCodeNextButton(WebDriver driver){
+    public void clickGoogleAuthenticatorCodeNextButton(){
         WebElement element = nextAuthCodeGoogleButtonLocator;
         element.click();
         System.out.println("Next Auth Code clicked!");
     }
 
 
-    public void clickNextPasswordGoogle(WebDriver driver){
+    public void clickNextPasswordGoogle(){
         WebElement element = nextPasswordGoogleButtonLocator;
         element.click();
         System.out.println("Next password clicked!");
     }
 
-    public void enterPasswordGoogle(WebDriver driver,String password) {
+    public void enterPasswordGoogle(String password) {
         WebElement element = passwordGoogleLocator;
         element.clear();
         element.sendKeys(password);
@@ -81,13 +82,13 @@ public class LoginPage {
         }
     }
 
-    public void clickNextEmailGoogle(WebDriver driver){
+    public void clickNextEmailGoogle(){
         WebElement element = nextEmailGoogleButtonLocator;
         element.click();
         System.out.println("Next Email clicked!");
     }
 
-    public void enterEmailGoogle(WebDriver driver,String username) {
+    public void enterEmailGoogle(String username) {
         WebElement element = emailGoogleLocator;
         element.clear();
         element.sendKeys(username);
@@ -99,9 +100,7 @@ public class LoginPage {
         }
     }
 
-    public void navigate() {
-    driver.get("https://accounts.google.com/");
-    }
-
     
+
+
 }

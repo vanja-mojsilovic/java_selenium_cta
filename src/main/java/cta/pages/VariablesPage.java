@@ -8,7 +8,7 @@ import com.github.dockerjava.core.dockerfile.DockerfileStatement.Env;
 import io.github.cdimascio.dotenv.Dotenv;
 
 
-public class VariablesPage {
+public class VariablesPage extends BasePage{
     
     
     // Variables
@@ -19,18 +19,20 @@ public class VariablesPage {
     public String emailGoogle = get("VANJA_EMAIL");
     public String passwordGoogle = get("VANJA_GOOGLE_PASSWORD");
     public String googleSecretKey = get("VANJA_GOOGLE_SECRET_KEY");
+    public String googleLoginPage = "https://accounts.google.com/";
 
     // Constructor
     public VariablesPage(WebDriver driver) {
+        super(driver);
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
     // Methods
     public static String get(String key) {
-        String value = System.getenv(key); // GitHub Actions or OS-level
+        String value = System.getenv(key); 
         if (value == null || value.isEmpty()) {
-            value = dotenv.get(key);       // Local .env fallback
+            value = dotenv.get(key);       
         }
         return value;
     }
