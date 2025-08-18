@@ -15,11 +15,12 @@ public abstract class BaseTest {
         if (System.getenv("CI") != null) {
             options.addArguments("--no-sandbox");
             options.addArguments("--disable-dev-shm-usage");
-            options.addArguments("--window-size=1920,1080");
+            //options.addArguments("--window-size=1920,1080");
             options.addArguments("--disable-gpu");
         }
 
         driver = new ChromeDriver(options);
+        driver.manage().window().maximize();
     }
 
     public void tearDown() {
@@ -28,7 +29,7 @@ public abstract class BaseTest {
         }
     }
 
-    protected void sleep(int millis) {
+    public void sleep(int millis) {
         try {
             Thread.sleep(millis);
         } catch (InterruptedException e) {

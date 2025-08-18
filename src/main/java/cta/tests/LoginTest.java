@@ -18,22 +18,7 @@ public class LoginTest extends BaseTest {
         navigate(variablesPage.googleLoginPage);
         sleep(1000);
 
-        loginPage.enterEmailGoogle(variablesPage.emailGoogle);
-        sleep(2000);
-
-        loginPage.clickNextEmailGoogle();
-        sleep(2000);
-
-        loginPage.enterPasswordGoogle(variablesPage.passwordGoogle);
-        sleep(2000);
-
-        loginPage.clickNextPasswordGoogle();
-        sleep(2000);
-
-        loginPage.enterGoogleAuthenticatorCode(variablesPage.googleSecretKey);
-        sleep(2000);
-
-        loginPage.clickGoogleAuthenticatorCodeNextButton();
+        loginPage.googleLogin(variablesPage.emailGoogle,variablesPage.passwordGoogle,variablesPage.googleSecretKey);
         sleep(4000);
 
         navigate(variablesPage.spothopperappPage);

@@ -10,7 +10,7 @@ public class VariablesPage extends BasePage{
     
     
     // Variables
-    private WebDriver driver;
+    //private WebDriver driver;
     private static final Dotenv dotenv = Dotenv.configure()
                                                 .ignoreIfMissing()
                                                 .load();

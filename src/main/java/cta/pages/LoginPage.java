@@ -91,8 +91,18 @@ public class LoginPage extends BasePage {
         
     }
 
+    public void googleLogin(String emailGoogle,String passwordGoogle,String googleSecretKey){
+        enterEmailGoogle(emailGoogle);
+        clickNextEmailGoogle();
+
+        enterPasswordGoogle(passwordGoogle);
+        clickNextPasswordGoogle();
+        enterGoogleAuthenticatorCode(googleSecretKey);
+        clickGoogleAuthenticatorCodeNextButton();
+    }
+
     public void enterGoogleAuthenticatorCode(String googleSecretKey){
-        WebElement element = enterCodeFieldLocator;
+        WebElement element = waitForVisibilityOfElement(driver,enterCodeFieldLocator,15);
 		Totp totp = new Totp(googleSecretKey);
 		String verificationCode = totp.now();
         element.clear();
@@ -101,20 +111,20 @@ public class LoginPage extends BasePage {
     }
 
     public void clickGoogleAuthenticatorCodeNextButton(){
-        WebElement element = nextAuthCodeGoogleButtonLocator;
+        WebElement element = waitForVisibilityOfElement(driver,nextAuthCodeGoogleButtonLocator,15);
         element.click();
         System.out.println("Next Auth Code clicked!");
     }
 
 
     public void clickNextPasswordGoogle(){
-        WebElement element = nextPasswordGoogleButtonLocator;
+        WebElement element = waitForVisibilityOfElement(driver,nextPasswordGoogleButtonLocator,15);
         element.click();
         System.out.println("Next password clicked!");
     }
 
     public void enterPasswordGoogle(String password) {
-        WebElement element = passwordGoogleLocator;
+        WebElement element = waitForVisibilityOfElement(driver,passwordGoogleLocator,15);
         element.clear();
         element.sendKeys(password);
         String enteredValue = element.getAttribute("value");
@@ -126,13 +136,13 @@ public class LoginPage extends BasePage {
     }
 
     public void clickNextEmailGoogle(){
-        WebElement element = nextEmailGoogleButtonLocator;
+        WebElement element = waitForVisibilityOfElement(driver, nextEmailGoogleButtonLocator, 15);
         element.click();
         System.out.println("Next Email clicked!");
     }
 
     public void enterEmailGoogle(String username) {
-        WebElement element = emailGoogleLocator;
+        WebElement element = waitForVisibilityOfElement(driver, emailGoogleLocator, 15);
         element.clear();
         element.sendKeys(username);
         String enteredValue = element.getAttribute("value");
