@@ -39,7 +39,13 @@ public class LoginTest extends BaseTest {
         navigate(variablesPage.spothopperappPage);
  
         loginPage.spothopperappLogin();
-        sleep(5000);
+        sleep(3000);
+
+        navigate(variablesPage.githubIssueUrl);
+        sleep(2000);
+        
+        loginPage.githubVerificationWithAuth(driver,variablesPage.emailGoogle,variablesPage.githubPassword,variablesPage.githubSecretKey);
+        sleep(3000);
 
         tearDown();
         System.exit(0);

@@ -17,10 +17,11 @@ public class VariablesPage extends BasePage{
     public String emailGoogle = get("VANJA_EMAIL");
     public String passwordGoogle = get("VANJA_GOOGLE_PASSWORD");
     public String googleSecretKey = get("VANJA_GOOGLE_SECRET_KEY");
-    public String githubPassword = System.getenv("GITHUB_PASSWORD_VANJA");
-    public String githubSecretKey = System.getenv("GITHUB_SECRET_KEY_VANJA");
+    public String githubPassword = get("H_PASSWORD_VANJA");
+    public String githubSecretKey = get("H_SECRET_KEY_VANJA");
     public String googleLoginPage = "https://accounts.google.com/";
     public String spothopperappPage = "https://www.spothopperapp.com/admin/spots/";
+    public String githubIssueUrl = "https://github.com/SpotHopperLLC/content/issues/";
 
     // Constructor
     public VariablesPage(WebDriver driver) {
@@ -30,9 +31,7 @@ public class VariablesPage extends BasePage{
     }
 
     // Methods
-     public void githubVerificationWithAuth(WebDriver driver,String emailGoogle){
-        
-    }
+     
 
     public static String get(String key) {
         String value = System.getenv(key); 

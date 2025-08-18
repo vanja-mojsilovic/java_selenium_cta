@@ -39,10 +39,21 @@ public class LoginPage extends BasePage {
     @FindBy(xpath ="//button//span[contains(text(),'Continue')]")
 	WebElement googleAccountContinueLocator;
 
+    @FindBy(xpath ="//input[@id = 'login_field' and @name='login']")
+	WebElement githubIssueUserNameLocator;
+
+    @FindBy(xpath ="//input[@id = 'password' and @name='password']")
+	WebElement githubIssuePasswordLocator;
+
+    @FindBy(xpath ="//input[@value = 'Sign in' and @name='commit' and @type='submit']")
+	WebElement githubIssueSignInLocator;
+    
+    @FindBy(xpath ="//input[@id = 'app_totp' and @name='app_otp']")
+	WebElement githubIssueAuthenticatiorSixDigitsCodeLocator;
+
 
 
     // Constructor
-
     public LoginPage(WebDriver driver) {
         super(driver);
         this.driver = driver;
@@ -50,7 +61,27 @@ public class LoginPage extends BasePage {
     }
 
     // Methods
-    
+    public void githubVerificationWithAuth(WebDriver driver,String emailGoogle,String githubPassword,String githubSecretKey){
+        WebElement emailElement = waitForVisibilityOfElement(driver, githubIssueUserNameLocator, 3);
+		emailElement.clear();
+		emailElement.sendKeys(emailGoogle);
+        System.out.println("Github username entered!");
+		WebElement passwordElement = waitForVisibilityOfElement(driver, githubIssuePasswordLocator, 3);
+		passwordElement.clear();
+		passwordElement.sendKeys(githubPassword);
+        System.out.println("Github password entered!");
+		WebElement signInElement = waitForVisibilityOfElement(driver, githubIssueSignInLocator, 3);
+		signInElement.click();
+        System.out.println("Github sign in button clicked!");
+	    Totp githubTotp = new Totp(githubSecretKey);
+	    String githubVerificationCode = githubTotp.now();
+		WebElement authenticatorCodeElement = waitForVisibilityOfElement(driver, githubIssueAuthenticatiorSixDigitsCodeLocator, 3);
+		authenticatorCodeElement.clear();
+		authenticatorCodeElement.sendKeys(githubVerificationCode);
+        System.out.println("Github authetication code entered!");
+    }
+
+
     public void spothopperappLogin(){
 		List<WebElement> elements = waitForVisibilityOfElements(driver, googleContinueWithGoogleLocator, 5);
 		if(!elements.isEmpty()) {
