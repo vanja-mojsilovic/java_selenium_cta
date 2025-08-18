@@ -2,6 +2,8 @@ name: Run Selenium Login Test
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: '0 8 * * *'  # Runs daily at 10:00 CEST
 
 jobs:
   login-test:
