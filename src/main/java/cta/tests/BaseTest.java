@@ -20,7 +20,9 @@ public abstract class BaseTest {
         }
 
         driver = new ChromeDriver(options);
-        driver.manage().window().maximize();
+        if (System.getenv("CI") == null) {
+            driver.manage().window().maximize();
+        }
     }
 
     public void tearDown() {
