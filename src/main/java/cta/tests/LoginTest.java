@@ -1,7 +1,7 @@
 package cta.tests;
 
 import cta.pages.*;
-import cta.tests.*;
+//import cta.tests.*;
 
 public class LoginTest extends BaseTest {
     public static void main(String[] args) {
@@ -34,7 +34,13 @@ public class LoginTest extends BaseTest {
         sleep(3000);
 
         loginPage.clickGoogleAuthenticatorCodeNextButton();
-        sleep(10000);
+        sleep(4000);
+
+        navigate(variablesPage.spothopperappPage);
+        
+
+        loginPage.spothopperappLogin();
+        sleep(5000);
 
         tearDown();
         System.exit(0);

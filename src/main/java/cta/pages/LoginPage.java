@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
 //import javax.swing.JPasswordField;
 
 import org.jboss.aerogear.security.otp.Totp;
@@ -36,6 +38,14 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//div[@id='totpNext']//button")
     public WebElement nextAuthCodeGoogleButtonLocator;
 
+    @FindBy(xpath ="//button[@name='googleSignUpButton']")
+	List <WebElement> googleContinueWithGoogleLocator;
+
+    @FindBy(xpath ="//button//span[contains(text(),'Continue')]")
+	WebElement googleAccountContinueLocator;
+
+
+
     // Constructor
 
     public LoginPage(WebDriver driver) {
@@ -46,7 +56,16 @@ public class LoginPage extends BasePage {
 
     // Methods
     
-   
+    public void spothopperappLogin(){
+		List<WebElement> elements = waitForVisibilityOfElements(driver, googleContinueWithGoogleLocator, 15);
+		if(!elements.isEmpty()) {
+			clickElement(driver, elements.get(0), "googleAccountLocator", 15);
+            System.out.println("Continue With Google Clicked!");
+			//clickElement(driver, googleAccountContinueLocator, "googleAccountContinueLocator", 15);
+			//clickElement(driver, googleContinueWithGoogleLocator.get(1), "googleContinueWithGoogleLocator", 15);
+		}
+        System.out.println("Spothopper App Continue With Google Clicked!");
+    }
 
     public void enterGoogleAuthenticatorCode(String googleSecretKey){
         WebElement element = enterCodeFieldLocator;
@@ -99,6 +118,7 @@ public class LoginPage extends BasePage {
             System.out.println("Email entry failed. ");
         }
     }
+
 
     
 

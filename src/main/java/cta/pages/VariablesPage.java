@@ -20,6 +20,7 @@ public class VariablesPage extends BasePage{
     public String passwordGoogle = get("VANJA_GOOGLE_PASSWORD");
     public String googleSecretKey = get("VANJA_GOOGLE_SECRET_KEY");
     public String googleLoginPage = "https://accounts.google.com/";
+    public String spothopperappPage = "https://www.spothopperapp.com/admin/spots/";
 
     // Constructor
     public VariablesPage(WebDriver driver) {
