@@ -1,15 +1,10 @@
 package cta.pages;
 
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
 import java.util.List;
-
-//import javax.swing.JPasswordField;
-
 import org.jboss.aerogear.security.otp.Totp;
 
 
@@ -57,14 +52,12 @@ public class LoginPage extends BasePage {
     // Methods
     
     public void spothopperappLogin(){
-		List<WebElement> elements = waitForVisibilityOfElements(driver, googleContinueWithGoogleLocator, 15);
+		List<WebElement> elements = waitForVisibilityOfElements(driver, googleContinueWithGoogleLocator, 5);
 		if(!elements.isEmpty()) {
 			clickElement(driver, elements.get(0), "googleAccountLocator", 15);
-            System.out.println("Continue With Google Clicked!");
-			//clickElement(driver, googleAccountContinueLocator, "googleAccountContinueLocator", 15);
-			//clickElement(driver, googleContinueWithGoogleLocator.get(1), "googleContinueWithGoogleLocator", 15);
+            System.out.println("Spothopper App Continue With Google Clicked!");
 		}
-        System.out.println("Spothopper App Continue With Google Clicked!");
+        
     }
 
     public void enterGoogleAuthenticatorCode(String googleSecretKey){

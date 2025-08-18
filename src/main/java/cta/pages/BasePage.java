@@ -11,12 +11,19 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public abstract class BasePage {
+    
+    // Variables
     protected WebDriver driver;
-
+    
+    // Constructor
     public BasePage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
+    
+    // Methods
+   
+
 
     public void clickElement(WebDriver driver, WebElement element, String element_name,int numOfSeconds) {
 		waitForClickabilityOfElement(driver, element, numOfSeconds);
